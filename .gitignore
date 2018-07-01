@@ -49,4 +49,8 @@ AssociateEvaluationSystem/logs/*
 \#*\#
 .\#*
 
+cnf.xml
+.cnf.xml
+*.cnf.xml
+
 target/
