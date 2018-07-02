@@ -1,11 +1,30 @@
 package com.revature.bikeshop.beans;
 
-public class Order {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
+@Entity
+public class Order {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Order_Sequence")
+	@SequenceGenerator(name = "order_Sequence", sequenceName = "Order_SEQ")
 	private int orderId;
+	
+	@Column(name = "cart")
 	private Cart cart;
+	
+	@Column(name = "user")
 	private User user;
+	
+	@Column(name = "billAddress")
 	private String billAddress;
+	
+	@Column(name = "shipAddress")
 	private String shipAddress;
 	
 	

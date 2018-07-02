@@ -2,17 +2,48 @@ package com.revature.bikeshop.beans;
 
 import java.util.List;
 
-public class Product {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
+@Entity
+public class Product {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_Sequence")
+	@SequenceGenerator(name = "product_Sequence", sequenceName = "Product_SEQ")
 	private int productId;
+	
+	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "manufacturer")
 	private String manufacturer;
+	
+	@Column(name = "category")
 	private String category;
+	
+	@Column(name = "description")
 	private String description;
+	
+	@Column(name = "price")
 	private double price;
+	
+	@Column(name = "status")
 	private String status;
+	
+	@Column(name = "inStock")
 	private int inStock;
 	//private MultipartFile image;
+	
+	 @OneToMany(cascade = CascadeType.ALL,
+	            fetch = FetchType.EAGER,
+	            mappedBy = "cart")
 	private List <CartItem> cartItemList;
 	
 	

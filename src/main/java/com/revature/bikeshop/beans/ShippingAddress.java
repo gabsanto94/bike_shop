@@ -1,11 +1,37 @@
 package com.revature.bikeshop.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+
+@Entity
 public class ShippingAddress {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "shipping_Sequence")
+	@SequenceGenerator(name = "shipping_Sequence", sequenceName = "Shipping_SEQ")
 	private int shippingAddressId;
+	
+	@Column(name = "streetname")
 	private String streetname;
+	
+	@Column(name = "city")
 	private String city;
+	
+	@Column(name = "state")
 	private String state;
+	
+	@Column(name = "zip")
 	private String zip;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", nullable = false)
 	private User user;
 	
 	
