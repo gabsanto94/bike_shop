@@ -1,14 +1,53 @@
 package com.revature.bikeshop.model;
 
-public class User {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+public class User {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_Sequence")
+	@SequenceGenerator(name = "user_Sequence", sequenceName = "User_SEQ")
 	private int userId;
+	
+	@Column(name = "userRole")
+	private String userRole;
+	
+	@Column(name = "fname")
 	private String fname;
+	
+	@Column(name = "lname")
 	private String lname;
+	
+	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "username")
 	private String username;
+	
+	@Column(name = "password")
 	private String password;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "billingAddressId", nullable = false)
 	private BillingAddress billingAddress;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shippingAddressId", nullable = false)
+	private BillingAddress shippingAddress;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cartId", nullable = false)
+	@JsonIgnore
 	private Cart cart;
 	
 	
@@ -33,6 +72,14 @@ public class User {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	
+	public String getUserRole() {
+		return userRole;
+	}
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
+	
 	public String getFname() {
 		return fname;
 	}
@@ -131,11 +178,15 @@ public class User {
 			return false;
 		return true;
 	}
+	
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", fname=" + fname + ", lname=" + lname + ", email=" + email + ", username="
-				+ username + ", password=" + password + ", cart=" + cart + "]";
+		return "User [userId=" + userId + ", userRole=" + userRole + ", fname=" + fname + ", lname=" + lname
+				+ ", email=" + email + ", username=" + username + ", password=" + password + ", billingAddress="
+				+ billingAddress + ", cart=" + cart + "]";
 	}
+	
+	
 	
 	
 	
