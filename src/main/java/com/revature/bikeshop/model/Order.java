@@ -41,6 +41,7 @@ public class Order {
 		this.billAddress = billAddress;
 		this.shipAddress = shipAddress;
 	}
+
 	public int getOrderId() {
 		return orderId;
 	}
@@ -71,53 +72,11 @@ public class Order {
 	public void setShipAddress(String shipAddress) {
 		this.shipAddress = shipAddress;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((billAddress == null) ? 0 : billAddress.hashCode());
-		result = prime * result + ((cart == null) ? 0 : cart.hashCode());
-		result = prime * result + orderId;
-		result = prime * result + ((shipAddress == null) ? 0 : shipAddress.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Order other = (Order) obj;
-		if (billAddress == null) {
-			if (other.billAddress != null)
-				return false;
-		} else if (!billAddress.equals(other.billAddress))
-			return false;
-		if (cart == null) {
-			if (other.cart != null)
-				return false;
-		} else if (!cart.equals(other.cart))
-			return false;
-		if (orderId != other.orderId)
-			return false;
-		if (shipAddress == null) {
-			if (other.shipAddress != null)
-				return false;
-		} else if (!shipAddress.equals(other.shipAddress))
-			return false;
-		return true;
-	}
+
 	@Override
 	public String toString() {
 		return "Order [orderId=" + orderId + ", cart=" + cart + ", billAddress=" + billAddress + ", shipAddress="
 				+ shipAddress + "]";
 	}
-	
-	
-	
-	
-	
-	
+
 }

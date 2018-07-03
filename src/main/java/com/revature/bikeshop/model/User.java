@@ -2,7 +2,6 @@ package com.revature.bikeshop.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,9 +18,6 @@ public class User {
 	@SequenceGenerator(name = "user_Sequence", sequenceName = "User_SEQ")
 	private int userId;
 	
-	@Column(name = "userRole")
-	private String userRole;
-	
 	@Column(name = "fname")
 	private String fname;
 	
@@ -37,36 +33,51 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
     @JoinColumn(name = "billingAddressId", nullable = false)
 	private BillingAddress billingAddress;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
     @JoinColumn(name = "shippingAddressId", nullable = false)
-	private BillingAddress shippingAddress;
+	private ShippingAddress shippingAddress;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
     @JoinColumn(name = "cartId", nullable = false)
 	@JsonIgnore
 	private Cart cart;
-	
+
+    @Column(name = "userRole")
+    private String userRole;
 	
 	public User() {
 		super();
 	}
-	public User(int userId, String fname, String lname, String email, String username, String password,
-			BillingAddress billingAddress, Cart cart) {
-		super();
-		this.userId = userId;
-		this.fname = fname;
-		this.lname = lname;
-		this.email = email;
-		this.username = username;
-		this.password = password;
-		this.billingAddress = billingAddress;
-		this.cart = cart;
-	}
-	public int getUserId() {
+
+	public User(String first, String last){
+        this.fname = first;
+        this.lname = last;
+        this.email = null;
+        this.username = null;
+        this.password = null;
+        this.billingAddress = null;
+        this.shippingAddress = null;
+        this.cart = null;
+        this.userRole = null;
+    }
+
+    public User(String fname, String lname, String email, String username, String password, BillingAddress billingAddress, ShippingAddress shippingAddress, Cart cart, String userRole) {
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.billingAddress = billingAddress;
+        this.shippingAddress = shippingAddress;
+        this.cart = cart;
+        this.userRole = userRole;
+    }
+
+    public int getUserId() {
 		return userId;
 	}
 	public void setUserId(int userId) {
@@ -122,73 +133,28 @@ public class User {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cart == null) ? 0 : cart.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((fname == null) ? 0 : fname.hashCode());
-		result = prime * result + ((lname == null) ? 0 : lname.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + userId;
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (cart == null) {
-			if (other.cart != null)
-				return false;
-		} else if (!cart.equals(other.cart))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (fname == null) {
-			if (other.fname != null)
-				return false;
-		} else if (!fname.equals(other.fname))
-			return false;
-		if (lname == null) {
-			if (other.lname != null)
-				return false;
-		} else if (!lname.equals(other.lname))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (userId != other.userId)
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
-		return true;
-	}
-	
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", userRole=" + userRole + ", fname=" + fname + ", lname=" + lname
-				+ ", email=" + email + ", username=" + username + ", password=" + password + ", billingAddress="
-				+ billingAddress + ", cart=" + cart + "]";
-	}
-	
-	
-	
-	
-	
 
+    public ShippingAddress getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(ShippingAddress shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userRole='" + userRole + '\'' +
+                ", fname='" + fname + '\'' +
+                ", lname='" + lname + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", billingAddress=" + billingAddress +
+                ", shippingAddress=" + shippingAddress +
+                ", cart=" + cart +
+                '}';
+    }
 }

@@ -2,7 +2,6 @@ package com.revature.bikeshop.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +28,7 @@ public class CartItem {
 	@Column(name="totalPrice")
 	private double totalPrice;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
     @JoinColumn(name = "cartId", nullable = false)
 	@JsonIgnore
 	private Cart cart;
@@ -47,6 +46,7 @@ public class CartItem {
 		this.totalPrice = totalPrice;
 		this.cart = cart;
 	}
+
 	public int getCartItemId() {
 		return cartItemId;
 	}
@@ -77,46 +77,11 @@ public class CartItem {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
+
 	@Override
 	public String toString() {
 		return "CartItem [cartItemId=" + cartItemId + ", product=" + product + ", quantity=" + quantity
 				+ ", totalPrice=" + totalPrice + "]";
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + cartItemId;
-		result = prime * result + ((product == null) ? 0 : product.hashCode());
-		result = prime * result + quantity;
-		long temp;
-		temp = Double.doubleToLongBits(totalPrice);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CartItem other = (CartItem) obj;
-		if (cartItemId != other.cartItemId)
-			return false;
-		if (product == null) {
-			if (other.product != null)
-				return false;
-		} else if (!product.equals(other.product))
-			return false;
-		if (quantity != other.quantity)
-			return false;
-		if (Double.doubleToLongBits(totalPrice) != Double.doubleToLongBits(other.totalPrice))
-			return false;
-		return true;
-	}
-	
-	
 
 }
