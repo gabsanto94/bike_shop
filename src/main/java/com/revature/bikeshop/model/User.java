@@ -1,4 +1,4 @@
-package com.revature.bikeshop.beans;
+package com.revature.bikeshop.model;
 
 public class User {
 
