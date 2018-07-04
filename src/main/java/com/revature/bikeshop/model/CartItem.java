@@ -1,35 +1,29 @@
 package com.revature.bikeshop.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class CartItem {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CartItem_Sequence")
-	@SequenceGenerator(name = "cartItem_Sequence", sequenceName = "CartItem_SEQ")
+    @SequenceGenerator(name = "cartItem_Sequence", sequenceName = "CartItem_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cartItem_Sequence")
 	private int cartItemId;
 	
-	@Column(name = "product")
+	@ManyToOne
+    @JoinColumn
 	private Product product;
 	
-	@Column(name="quantity")
+	@Column
 	private int quantity;
 	
-	@Column(name="totalPrice")
+	@Column
 	private double totalPrice;
 	
-	@OneToOne
-    @JoinColumn(name = "cartId", nullable = false)
+	@ManyToOne
+    @JoinColumn(name = "cartId")
 	@JsonIgnore
 	private Cart cart;
 	

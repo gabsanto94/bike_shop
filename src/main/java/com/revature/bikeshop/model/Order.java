@@ -1,31 +1,30 @@
 package com.revature.bikeshop.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 @Entity
 public class Order {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Order_Sequence")
-	@SequenceGenerator(name = "order_Sequence", sequenceName = "Order_SEQ")
+    @SequenceGenerator(name = "order_Sequence", sequenceName = "Order_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_Sequence")
 	private int orderId;
 	
-	@Column(name = "cart")
+	@OneToOne
+    @JoinColumn(name="cartId")
 	private Cart cart;
-	
-	@Column(name = "user")
+
+	@OneToOne
+	@JoinColumn(name = "userId")
 	private User user;
 	
-	@Column(name = "billAddress")
-	private String billAddress;
+	@OneToOne
+    @JoinColumn(name = "billingAddressId")
+	private BillingAddress billAddress;
 	
-	@Column(name = "shipAddress")
-	private String shipAddress;
+	@OneToOne
+    @JoinColumn(name = "shippingAddressId")
+	private ShippingAddress shipAddress;
 	
 	
 	
@@ -33,7 +32,7 @@ public class Order {
 		super();
 	}
 	
-	public Order(int orderId, Cart cart, User user, String billAddress, String shipAddress) {
+	public Order(int orderId, Cart cart, User user, BillingAddress billAddress, ShippingAddress shipAddress) {
 		super();
 		this.orderId = orderId;
 		this.cart = cart;
@@ -60,16 +59,16 @@ public class Order {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public String getBillAddress() {
+	public BillingAddress getBillAddress() {
 		return billAddress;
 	}
-	public void setBillAddress(String billAddress) {
+	public void setBillAddress(BillingAddress billAddress) {
 		this.billAddress = billAddress;
 	}
-	public String getShipAddress() {
+	public ShippingAddress getShipAddress() {
 		return shipAddress;
 	}
-	public void setShipAddress(String shipAddress) {
+	public void setShipAddress(ShippingAddress shipAddress) {
 		this.shipAddress = shipAddress;
 	}
 

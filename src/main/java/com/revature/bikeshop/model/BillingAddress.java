@@ -1,30 +1,25 @@
 package com.revature.bikeshop.model;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
+@Entity
 public class BillingAddress {
 	
 	@Id
+    @SequenceGenerator(name = "billing_Sequence", sequenceName = "Billing_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "billing_Sequence")
-	@SequenceGenerator(name = "billing_Sequence", sequenceName = "Billing_SEQ")
 	private int billingAddressId;
 	
-	@Column(name = "streetname")
+	@Column
 	private String streetname;
 	
-	@Column(name = "city")
+	@Column
 	private String city;
 	
-	@Column(name= "state")
+	@Column
 	private String state;
 	
-	@Column(name = "zip")
+	@Column
 	private String zip;
 	
 	@OneToOne

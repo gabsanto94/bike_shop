@@ -13,20 +13,20 @@ import javax.persistence.SequenceGenerator;
 public class ShippingAddress {
 	
 	@Id
+    @SequenceGenerator(name = "shipping_Sequence", sequenceName = "Shipping_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "shipping_Sequence")
-	@SequenceGenerator(name = "shipping_Sequence", sequenceName = "Shipping_SEQ")
 	private int shippingAddressId;
 	
-	@Column(name = "streetname")
+	@Column
 	private String streetname;
 	
-	@Column(name = "city")
+	@Column
 	private String city;
 	
-	@Column(name = "state")
+	@Column
 	private String state;
 	
-	@Column(name = "zip")
+	@Column
 	private String zip;
 	
 	@OneToOne

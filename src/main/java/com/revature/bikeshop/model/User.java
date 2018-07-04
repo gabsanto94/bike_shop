@@ -1,52 +1,44 @@
 package com.revature.bikeshop.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name="users")
 public class User {
 	@Id
+    @SequenceGenerator(name = "user_Sequence", sequenceName = "User_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_Sequence")
-	@SequenceGenerator(name = "user_Sequence", sequenceName = "User_SEQ")
 	private int userId;
 	
-	@Column(name = "fname")
+	@Column
 	private String fname;
 	
-	@Column(name = "lname")
+	@Column
 	private String lname;
 	
-	@Column(name = "email")
+	@Column
 	private String email;
 	
-	@Column(name = "username")
+	@Column
 	private String username;
 	
-	@Column(name = "password")
+	@Column
 	private String password;
 	
 	@OneToOne
-    @JoinColumn(name = "billingAddressId", nullable = false)
+    @JoinColumn(name = "billingAddressId")
 	private BillingAddress billingAddress;
 	
 	@OneToOne
-    @JoinColumn(name = "shippingAddressId", nullable = false)
+    @JoinColumn(name = "shippingAddressId")
 	private ShippingAddress shippingAddress;
 	
 	@OneToOne
-    @JoinColumn(name = "cartId", nullable = false)
-	@JsonIgnore
+    @JoinColumn(name = "cartId")
 	private Cart cart;
 
-    @Column(name = "userRole")
+    @Column
     private String userRole;
 	
 	public User() {

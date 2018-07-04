@@ -2,36 +2,27 @@ package com.revature.bikeshop.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 @Entity
 public class Cart {
 	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Cart_Sequence")
-	@SequenceGenerator(name = "cart_Sequence", sequenceName = "Cart_SEQ")
+    @SequenceGenerator(name = "cart_Sequence", sequenceName = "Cart_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cart_Sequence")
 	private int cartId;
 	
-	@OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
-            mappedBy = "cart")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "cart")
 	private List<CartItem> cartItems;
 	
-	@Column(name = "grandTotal")
+	@Column
 	private double grandTotal;
-	
-	
-	
-	
+
+	@OneToOne
+    @JoinColumn
+    private User user;
+
 	public Cart() {
 		super();
 	}

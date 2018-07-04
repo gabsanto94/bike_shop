@@ -15,35 +15,33 @@ import javax.persistence.SequenceGenerator;
 @Entity
 public class Product {
 	@Id
+    @SequenceGenerator(name = "product_Sequence", sequenceName = "Product_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_Sequence")
-	@SequenceGenerator(name = "product_Sequence", sequenceName = "Product_SEQ")
 	private int productId;
 	
-	@Column(name = "name")
+	@Column
 	private String name;
 	
-	@Column(name = "manufacturer")
+	@Column
 	private String manufacturer;
 	
-	@Column(name = "category")
+	@Column
 	private String category;
 	
-	@Column(name = "description")
+	@Column
 	private String description;
 	
-	@Column(name = "price")
+	@Column
 	private double price;
 	
-	@Column(name = "status")
+	@Column
 	private String status;
 	
-	@Column(name = "inStock")
+	@Column
 	private int inStock;
 	//private MultipartFile image;
 	
-	 @OneToMany(cascade = CascadeType.ALL,
-	            fetch = FetchType.EAGER,
-	            mappedBy = "cart")
+	 @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "product")
 	private List <CartItem> cartItemList;
 	
 	
