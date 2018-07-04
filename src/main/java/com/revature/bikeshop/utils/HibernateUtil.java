@@ -2,9 +2,7 @@ package com.revature.bikeshop.utils;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.springframework.stereotype.Component;
@@ -13,31 +11,28 @@ import org.springframework.stereotype.Component;
 @Component
 public class HibernateUtil {
 
-    private SessionFactory sessionFactory;
+    private static StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+    private static SessionFactory sessionFactory = null;
+    private static Session session = null;
 
-    public HibernateUtil()
-    {
-        super();
-    }
+    public static Session getHibernateSession() {
 
-    public SessionFactory getSessionFactory()
-    {
-        if(sessionFactory == null)
-        {
-            StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder().configure().build();
-            Metadata meta = new MetadataSources(standardRegistry)
-                    .getMetadataBuilder()
-                    .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
-                    .build();
-            sessionFactory = meta.getSessionFactoryBuilder()
-                    .build();
+        if (sessionFactory == null) {
+            //Building session factory
+            try {
+                sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
+            } catch(Exception e) {
+                //Could not build session factory from hibernate.cfg.xml properties
+                e.printStackTrace();
+            }
         }
-        return sessionFactory;
-    }
 
-    public Session getSession()
-    {
-        return this.getSessionFactory().openSession();
+        if (session == null || !session.isOpen()) {
+            //opening new session
+            session = sessionFactory.openSession();
+        }
+
+        return session;
     }
 
 }
