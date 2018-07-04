@@ -26,4 +26,7 @@
     <mvc:resources mapping="/**" location="static" />
 
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+
+
 </beans>
