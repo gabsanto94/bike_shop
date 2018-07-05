@@ -23,7 +23,6 @@ public class BillingAddress {
 	private String zip;
 	
 	@OneToOne
-    @JoinColumn(name = "userId", nullable = false)
 	private User user;
 	
 	

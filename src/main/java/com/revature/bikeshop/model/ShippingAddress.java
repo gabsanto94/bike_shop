@@ -8,10 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import java.io.Serializable;
 
 @Entity
-public class ShippingAddress {
-	
+public class ShippingAddress implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
     @SequenceGenerator(name = "shipping_Sequence", sequenceName = "Shipping_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "shipping_Sequence")
@@ -30,7 +33,6 @@ public class ShippingAddress {
 	private String zip;
 	
 	@OneToOne
-    @JoinColumn(name = "userId", nullable = false)
 	private User user;
 	
 	

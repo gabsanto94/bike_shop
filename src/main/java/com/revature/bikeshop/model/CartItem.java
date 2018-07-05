@@ -4,8 +4,12 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.io.Serializable;
+
 @Entity
-public class CartItem {
+public class CartItem implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
     @SequenceGenerator(name = "cartItem_Sequence", sequenceName = "CartItem_SEQ")
@@ -13,7 +17,7 @@ public class CartItem {
 	private int cartItemId;
 	
 	@ManyToOne
-    @JoinColumn
+    @JoinColumn(name="productId")
 	private Product product;
 	
 	@Column

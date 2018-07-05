@@ -1,10 +1,13 @@
 package com.revature.bikeshop.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Order {
-	
+public class Order implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
     @SequenceGenerator(name = "order_Sequence", sequenceName = "Order_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_Sequence")

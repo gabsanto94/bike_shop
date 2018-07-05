@@ -1,11 +1,17 @@
 package com.revature.bikeshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
 @Table(name="users")
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
 	@Id
     @SequenceGenerator(name = "user_Sequence", sequenceName = "User_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_Sequence")
@@ -36,6 +42,7 @@ public class User {
 	
 	@OneToOne
     @JoinColumn(name = "cartId")
+    @JsonIgnore
 	private Cart cart;
 
     @Column

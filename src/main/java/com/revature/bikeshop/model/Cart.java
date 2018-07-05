@@ -1,12 +1,16 @@
 package com.revature.bikeshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-public class Cart {
-	
+public class Cart implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	@Id
     @SequenceGenerator(name = "cart_Sequence", sequenceName = "Cart_SEQ")
@@ -20,7 +24,8 @@ public class Cart {
 	private double grandTotal;
 
 	@OneToOne
-    @JoinColumn
+    @JoinColumn(name="userId")
+	@JsonIgnore
     private User user;
 
 	public Cart() {

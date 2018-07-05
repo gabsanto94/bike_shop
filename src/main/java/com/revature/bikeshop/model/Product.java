@@ -1,5 +1,6 @@
 package com.revature.bikeshop.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,7 +14,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Product {
+public class Product implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
     @SequenceGenerator(name = "product_Sequence", sequenceName = "Product_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_Sequence")
@@ -39,9 +43,11 @@ public class Product {
 	
 	@Column
 	private int inStock;
+
+	//@Transient
 	//private MultipartFile image;
 	
-	 @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "product")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "product")
 	private List <CartItem> cartItemList;
 	
 	
