@@ -32,11 +32,12 @@ public class Cart implements Serializable {
 		super();
 	}
 	
-	public Cart(int cartId, List<CartItem> cartItems, double grandTotal) {
+	public Cart(int cartId, List<CartItem> cartItems, double grandTotal, User user) {
 		super();
 		this.cartId = cartId;
 		this.cartItems = cartItems;
 		this.grandTotal = grandTotal;
+		this.user = user;
 	}
 
 	public int getCartId() {
@@ -58,9 +59,21 @@ public class Cart implements Serializable {
 		this.grandTotal = grandTotal;
 	}
 
-	@Override
-	public String toString() {
-		return "Cart [cartId=" + cartId + ", cartItems=" + cartItems + ", grandTotal=" + grandTotal + "]";
-	}
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "cartId=" + cartId +
+                ", cartItems=" + cartItems +
+                ", grandTotal=" + grandTotal +
+                ", user=" + user +
+                '}';
+    }
 }
