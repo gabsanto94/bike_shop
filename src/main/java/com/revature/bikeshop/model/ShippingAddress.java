@@ -1,23 +1,17 @@
 package com.revature.bikeshop.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "Shipping_Address")
 public class ShippingAddress implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
     @SequenceGenerator(name = "shipping_Sequence", sequenceName = "Shipping_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "shipping_Sequence")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "shipping_Sequence")
 	private int shippingAddressId;
 	
 	@Column

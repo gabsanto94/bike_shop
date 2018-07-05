@@ -3,24 +3,17 @@ package com.revature.bikeshop.model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "Products")
 public class Product implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
     @SequenceGenerator(name = "product_Sequence", sequenceName = "Product_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_Sequence")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "product_Sequence")
 	private int productId;
 	
 	@Column

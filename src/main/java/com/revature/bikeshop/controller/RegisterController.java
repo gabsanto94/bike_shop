@@ -30,7 +30,7 @@ public class RegisterController {
         user.setBillingAddress(ba);
         user.setShippingAddress(sa);
 
-        session.setAttribute("user", user);
+        //session.setAttribute("user", user);
 
         System.out.println("I am initializing stuff" + user);
 

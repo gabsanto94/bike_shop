@@ -11,9 +11,10 @@ public class FireHibernate {
         System.out.println("hi i am starting to make your table lazy guy...");
 
         Session session = HibernateUtil.getHibernateSession();
-        User u = new User("name", "santos");
+        User u = new User("name", "last", "whoa@whoa.com", "whoader", "yeehaw", null, null, null,  null);
 
-        session.save(u);
+        session.saveOrUpdate(u);
+        System.out.println(u);
 
         session.close();
         HibernateUtil.getHibernateSession().close();

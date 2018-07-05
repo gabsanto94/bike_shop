@@ -7,13 +7,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "Cart_Items")
 public class CartItem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
     @SequenceGenerator(name = "cartItem_Sequence", sequenceName = "CartItem_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cartItem_Sequence")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "cartItem_Sequence")
 	private int cartItemId;
 	
 	@ManyToOne

@@ -11,7 +11,7 @@ public class Order implements Serializable {
 
 	@Id
     @SequenceGenerator(name = "order_Sequence", sequenceName = "Order_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_Sequence")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "order_Sequence")
 	private int orderId;
 	
 	@OneToOne

@@ -8,13 +8,14 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Cart")
 public class Cart implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
     @SequenceGenerator(name = "cart_Sequence", sequenceName = "Cart_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cart_Sequence")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "cart_Sequence")
 	private int cartId;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "cart")

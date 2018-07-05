@@ -3,12 +3,12 @@ package com.revature.bikeshop.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="billing_address")
+@Table(name="Billing_Address")
 public class BillingAddress {
 	
 	@Id
     @SequenceGenerator(name = "billing_Sequence", sequenceName = "Billing_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "billing_Sequence")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "billing_Sequence")
 	private int billingAddressId;
 	
 	@Column
