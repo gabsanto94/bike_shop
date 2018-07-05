@@ -3,6 +3,7 @@ package com.revature.bikeshop.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name="billing_address")
 public class BillingAddress {
 	
 	@Id
