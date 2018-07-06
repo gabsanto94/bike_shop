@@ -10,23 +10,23 @@ public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @SequenceGenerator(name = "order_Sequence", sequenceName = "Order_SEQ")
+    @SequenceGenerator(name = "order_Sequence", sequenceName = "Order_SEQ", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "order_Sequence")
 	private int orderId;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="cartId")
 	private Cart cart;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userId")
 	private User user;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "billingAddressId")
 	private BillingAddress billAddress;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shippingAddressId")
 	private ShippingAddress shipAddress;
 	

@@ -13,11 +13,11 @@ public class CartItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @SequenceGenerator(name = "cartItem_Sequence", sequenceName = "CartItem_SEQ")
+    @SequenceGenerator(name = "cartItem_Sequence", sequenceName = "CartItem_SEQ", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "cartItem_Sequence")
 	private int cartItemId;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="productId")
 	private Product product;
 	
@@ -27,7 +27,7 @@ public class CartItem implements Serializable {
 	@Column
 	private double totalPrice;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cartId")
 	@JsonIgnore
 	private Cart cart;

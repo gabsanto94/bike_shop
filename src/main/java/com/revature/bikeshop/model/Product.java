@@ -12,7 +12,7 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @SequenceGenerator(name = "product_Sequence", sequenceName = "Product_SEQ")
+    @SequenceGenerator(name = "product_Sequence", sequenceName = "Product_SEQ", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "product_Sequence")
 	private int productId;
 	

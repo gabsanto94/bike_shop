@@ -10,7 +10,7 @@ public class ShippingAddress implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @SequenceGenerator(name = "shipping_Sequence", sequenceName = "Shipping_SEQ")
+    @SequenceGenerator(name = "shipping_Sequence", sequenceName = "Shipping_SEQ", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "shipping_Sequence")
 	private int shippingAddressId;
 	
@@ -26,7 +26,7 @@ public class ShippingAddress implements Serializable {
 	@Column
 	private String zip;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 	
 	
@@ -84,7 +84,7 @@ public class ShippingAddress implements Serializable {
 	@Override
 	public String toString() {
 		return "ShippingAddress [shippingAddressId=" + shippingAddressId + ", streetname=" + streetname + ", city="
-				+ city + ", state=" + state + ", zip=" + zip + ", user=" + user + "]";
+				+ city + ", state=" + state + ", zip=" + zip + "]";
 	}
 	
 	

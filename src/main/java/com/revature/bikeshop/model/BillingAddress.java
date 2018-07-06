@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class BillingAddress {
 	
 	@Id
-    @SequenceGenerator(name = "billing_Sequence", sequenceName = "Billing_SEQ")
+    @SequenceGenerator(name = "billing_Sequence", sequenceName = "Billing_SEQ", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "billing_Sequence")
 	private int billingAddressId;
 	
@@ -81,7 +81,7 @@ public class BillingAddress {
 	@Override
 	public String toString() {
 		return "BillingAddress [billingAddressId=" + billingAddressId + ", streetname=" + streetname + ", city=" + city
-				+ ", state=" + state + ", zip=" + zip + ", user=" + user + "]";
+				+ ", state=" + state + ", zip=" + zip + "]";
 	}
 
 }

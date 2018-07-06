@@ -8,12 +8,10 @@ import java.io.Serializable;
 
 @Entity
 @Table(name="users")
-public class User implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class User {
 
 	@Id
-    @SequenceGenerator(name = "user_Sequence", sequenceName = "User_SEQ")
+    @SequenceGenerator(name = "user_Sequence", sequenceName = "User_SEQ", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "user_Sequence")
 	private int userId;
 	
@@ -32,15 +30,15 @@ public class User implements Serializable {
 	@Column
 	private String password;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "billingAddressId")
 	private BillingAddress billingAddress;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shippingAddressId")
 	private ShippingAddress shippingAddress;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cartId")
     @JsonIgnore
 	private Cart cart;

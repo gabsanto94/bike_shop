@@ -14,7 +14,7 @@ public class Cart implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-    @SequenceGenerator(name = "cart_Sequence", sequenceName = "Cart_SEQ")
+    @SequenceGenerator(name = "cart_Sequence", sequenceName = "Cart_SEQ", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "cart_Sequence")
 	private int cartId;
 	
@@ -74,7 +74,7 @@ public class Cart implements Serializable {
                 "cartId=" + cartId +
                 ", cartItems=" + cartItems +
                 ", grandTotal=" + grandTotal +
-                ", user=" + user +
+                //", user=" + user +
                 '}';
     }
 }
