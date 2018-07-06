@@ -37,11 +37,6 @@ public class User {
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shippingAddressId")
 	private ShippingAddress shippingAddress;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cartId")
-    @JsonIgnore
-	private Cart cart;
 
     @Column
     private String userRole;
@@ -50,19 +45,7 @@ public class User {
 		super();
 	}
 
-	public User(String first, String last){
-        this.fname = first;
-        this.lname = last;
-        this.email = null;
-        this.username = null;
-        this.password = null;
-        this.billingAddress = null;
-        this.shippingAddress = null;
-        this.cart = null;
-        this.userRole = null;
-    }
-
-    public User(String fname, String lname, String email, String username, String password, BillingAddress billingAddress, ShippingAddress shippingAddress, Cart cart, String userRole) {
+    public User(String fname, String lname, String email, String username, String password, BillingAddress billingAddress, ShippingAddress shippingAddress, String userRole) {
         this.fname = fname;
         this.lname = lname;
         this.email = email;
@@ -70,7 +53,6 @@ public class User {
         this.password = password;
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
-        this.cart = cart;
         this.userRole = userRole;
     }
 
@@ -124,12 +106,6 @@ public class User {
 	public void setBillingAddress(BillingAddress billingAddress) {
 		this.billingAddress = billingAddress;
 	}
-	public Cart getCart() {
-		return cart;
-	}
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
 
     public ShippingAddress getShippingAddress() {
         return shippingAddress;
@@ -151,7 +127,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", billingAddress=" + billingAddress +
                 ", shippingAddress=" + shippingAddress +
-                ", cart=" + cart +
+
                 '}';
     }
 }

@@ -5,9 +5,12 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import com.revature.bikeshop.model.BillingAddress;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+import javax.transaction.Transactional;
+
+@Repository
+@Transactional
 public class BillingAddressDAOImp implements BillingAddressDAO {
 
 	@Override

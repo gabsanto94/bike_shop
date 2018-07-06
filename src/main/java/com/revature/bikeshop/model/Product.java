@@ -36,12 +36,6 @@ public class Product implements Serializable {
 	
 	@Column
 	private int inStock;
-
-	//@Transient
-	//private MultipartFile image;
-	
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "product")
-	private List <CartItem> cartItemList;
 	
 	
 	
@@ -50,7 +44,7 @@ public class Product implements Serializable {
 	}
 	
 	public Product(int productId, String name, String manufacturer, String category, String description, double price,
-			String status, int inStock, List<CartItem> cartItemList) {
+			String status, int inStock) {
 		super();
 		this.productId = productId;
 		this.name = name;
@@ -60,14 +54,8 @@ public class Product implements Serializable {
 		this.price = price;
 		this.status = status;
 		this.inStock = inStock;
-		this.cartItemList = cartItemList;
 	}
-	public List<CartItem> getCartItemList() {
-		return cartItemList;
-	}
-	public void setCartItemList(List<CartItem> cartItemList) {
-		this.cartItemList = cartItemList;
-	}
+
 	public int getProductId() {
 		return productId;
 	}

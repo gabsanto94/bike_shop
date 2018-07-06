@@ -15,15 +15,13 @@
 		<property name="show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
 
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- linking our POJOS -->
         <mapping class="com.revature.bikeshop.model.User" />
+        <mapping class="com.revature.bikeshop.model.LoginInfo" />
         <mapping class="com.revature.bikeshop.model.ShippingAddress" />
         <mapping class="com.revature.bikeshop.model.BillingAddress" />
-        <mapping class="com.revature.bikeshop.model.Cart"/>
-        <mapping class="com.revature.bikeshop.model.CartItem" />
-        <mapping class="com.revature.bikeshop.model.Order" />
         <mapping class="com.revature.bikeshop.model.Product" />
 
 	</session-factory>

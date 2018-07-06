@@ -9,6 +9,11 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class HomeController {
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String index(){
+        return "static/home.html";
+    }
+
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String home(HttpSession s){
         return "static/home.html";
