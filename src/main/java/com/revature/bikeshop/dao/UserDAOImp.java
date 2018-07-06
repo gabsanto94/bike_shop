@@ -3,6 +3,7 @@ package com.revature.bikeshop.dao;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import com.revature.bikeshop.model.User;
 import com.revature.bikeshop.utils.HibernateUtil;
@@ -12,6 +13,7 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 
 @Component
+@Transactional
 public class UserDAOImp implements UserDAO{
 
 	@Override
@@ -101,11 +103,11 @@ public class UserDAOImp implements UserDAO{
             t.commit();
         } catch (HibernateException e) {
             e.printStackTrace();
-        } finally {
-            session.close();
         }
 
         boolean success = session.contains(user);
+
+        session.close();
 
 		return success;
 				
