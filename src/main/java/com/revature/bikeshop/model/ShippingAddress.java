@@ -1,5 +1,7 @@
 package com.revature.bikeshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -26,7 +28,8 @@ public class ShippingAddress implements Serializable {
 	@Column
 	private String zip;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
+	@JsonIgnore
 	private User user;
 	
 	

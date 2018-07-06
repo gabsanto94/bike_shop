@@ -1,5 +1,7 @@
 package com.revature.bikeshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,6 +26,7 @@ public class BillingAddress {
 	private String zip;
 	
 	@OneToOne
+	@JsonIgnore
 	private User user;
 	
 	

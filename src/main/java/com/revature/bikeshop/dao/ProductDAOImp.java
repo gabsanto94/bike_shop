@@ -6,13 +6,11 @@ import com.revature.bikeshop.utils.HibernateUtil;
 import org.hibernate.Session;
 
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 
 import com.revature.bikeshop.model.Product;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
-@Repository
-@Transactional
+@Component
 public class ProductDAOImp implements ProductDAO {
 
     @Override

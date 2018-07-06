@@ -15,7 +15,6 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void addUser(User user) {
-        System.out.println("im inside the service" + user);
         userDao.addUser(user);
     }
 

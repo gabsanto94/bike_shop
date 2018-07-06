@@ -3,15 +3,15 @@ package com.revature.bikeshop.dao;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 
 import com.revature.bikeshop.model.User;
 import com.revature.bikeshop.utils.HibernateUtil;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.springframework.stereotype.Repository;
+import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
 
-@Repository
-@Transactional
+@Component
 public class UserDAOImp implements UserDAO{
 
 	@Override
@@ -93,11 +93,19 @@ public class UserDAOImp implements UserDAO{
 		//create session
 		Session session = HibernateUtil.getHibernateSession();
 
-		session.save(user);
+        Transaction t = session.beginTransaction();
+        Integer userId = 0;
+        try {
+            //userId = (Integer) session.save(user);
+            session.save(user);
+            t.commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
 
         boolean success = session.contains(user);
-
-		session.flush();
 
 		return success;
 				
