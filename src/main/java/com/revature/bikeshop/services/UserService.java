@@ -10,6 +10,10 @@ public interface UserService {
 
     User getUsersById (int userId);
 
+    boolean updateUser(User user);
+
+    void removeUser(int id);
+
     List<User> getAllUsers();
 
     User checkLogin(String username, String password);

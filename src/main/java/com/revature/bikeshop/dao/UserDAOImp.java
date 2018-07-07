@@ -3,7 +3,6 @@ package com.revature.bikeshop.dao;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 
 import com.revature.bikeshop.model.User;
 import com.revature.bikeshop.utils.HibernateUtil;
@@ -13,28 +12,28 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 
 @Component
-@Transactional
 public class UserDAOImp implements UserDAO{
 
 	@Override
 	public List<User> getAllUsers() {
 
-		List<User> users;
-		
+        List<User> users;
+
 		//get the session from manager class
 		Session session = HibernateUtil.getHibernateSession();
-		
+
 		//object class
 		String hql = "from com.revature.bikeshop.model.User";
-		
+
 		//query in our session
 		TypedQuery<User> query = session.createQuery(hql, User.class);
-		
+
 		//get list of users
 		users = query.getResultList();
-		
+        System.out.println(users.toString());
 		session.close();
-		
+
+		System.out.println(users.toString());
 		return users;
 	}
 
@@ -65,25 +64,14 @@ public class UserDAOImp implements UserDAO{
 	@Override
     public User getUserById(int userId){
 
-        User user;
 
-        //get session
         Session session = HibernateUtil.getHibernateSession();
 
-        //construct our query
-        String hql = "FROM com.revature.bikeshop.model.User WHERE 'username' = :input";
+		User result = session.get(User.class, userId);
 
-        //query
-        TypedQuery<User> query = session.createQuery(hql, User.class);
-        query.setParameter("input", userId);
-
-        //get the result
-        user = query.getSingleResult();
-
-        //close session
         session.close();
 
-        return user;
+        return result;
 
     }
 
@@ -115,15 +103,21 @@ public class UserDAOImp implements UserDAO{
 
 	@Override
 	public boolean updateUser(User user) {
-		
 		//create a session
 		Session session = HibernateUtil.getHibernateSession();
 
-		session.update(user);
-				
+        Transaction t = session.beginTransaction();
+
+		session.saveOrUpdate(user);
+
 		//check if update was success
 		boolean success = session.contains(user);
-				
+
+		if(success)
+		    t.commit();
+		else
+		    t.rollback();
+
 		session.close();
 				
 		return success;
@@ -131,16 +125,16 @@ public class UserDAOImp implements UserDAO{
 	}
 
 	@Override
-	public boolean deleteUser(String username) {
+	public boolean deleteUser(int id) {
 			//create session
             Session session = HibernateUtil.getHibernateSession();
 
             //Structure query
-            String hql = "DELETE com.revature.bikeshop.model.User WHERE 'username' = :input";
+            String hql = "DELETE com.revature.bikeshop.model.User WHERE 'userId' = :input";
 
             //query
             TypedQuery<User> query = session.createQuery(hql);
-            query.setParameter("input", username);
+            query.setParameter("input", id);
 
             session.beginTransaction();
                 int affectedRows = query.executeUpdate();

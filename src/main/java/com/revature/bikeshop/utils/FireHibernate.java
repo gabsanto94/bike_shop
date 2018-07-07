@@ -17,7 +17,7 @@ public class FireHibernate {
         System.out.println("hi i am starting to make your table lazy guy...");
 
         Session session = HibernateUtil.getHibernateSession();
-        org.hibernate.Transaction tx = session.beginTransaction();
+        //org.hibernate.Transaction tx = session.beginTransaction();
         BillingAddress ba = new BillingAddress(0, "325 East Mc Dowell", "Mesa", "Arizona", "85203", null);
         ShippingAddress sa = new ShippingAddress(0, "454 East Dowell", "Mesa", "Arizona", "85203", null);
         //Cart myCart = new Cart(0, null, 0, null);
@@ -28,7 +28,7 @@ public class FireHibernate {
         sa.setUser(u);
 
         userDao.addUser(u);
-        tx.commit();
+        //tx.commit();
         System.out.println(u);
 
         session.close();

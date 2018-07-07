@@ -24,6 +24,16 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public boolean updateUser(User user) {
+        return userDao.updateUser(user);
+    }
+
+    @Override
+    public void removeUser(int id) {
+        userDao.deleteUser(id);
+    }
+
+    @Override
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }
@@ -32,5 +42,6 @@ public class UserServiceImpl implements UserService{
     public User checkLogin(String username, String password) {
         return userDao.getUser(username, password);
     }
+
 
 }
