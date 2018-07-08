@@ -45,7 +45,7 @@ public class UserDAOImp implements UserDAO{
 		Session session = HibernateUtil.getHibernateSession();
 
 		//construct our query
-		String hql = "FROM com.revature.bikeshop.model.User WHERE 'username' = :input AND 'password' = :second";
+		String hql = "FROM com.revature.bikeshop.model.User u WHERE u.username = :input AND u.password = :second";
 
 		//query
 		TypedQuery<User> query = session.createQuery(hql, User.class);
@@ -78,8 +78,6 @@ public class UserDAOImp implements UserDAO{
 
 	@Override
 	public boolean addUser(User user) {
-
-	    System.out.println("im inside in the add user dao" + user);
 
 		//create session
 		Session session = HibernateUtil.getHibernateSession();
@@ -133,7 +131,7 @@ public class UserDAOImp implements UserDAO{
             Session session = HibernateUtil.getHibernateSession();
 
             //Structure query
-            String hql = "DELETE com.revature.bikeshop.model.User WHERE 'userId' = :input";
+            String hql = "DELETE com.revature.bikeshop.model.User u WHERE u.userId = :input";
 
             //query
             TypedQuery<User> query = session.createQuery(hql);
@@ -156,7 +154,7 @@ public class UserDAOImp implements UserDAO{
 		Session session = HibernateUtil.getHibernateSession();
 		
 		//struct our hql
-		String hql = "SELECT COUNT(*) FROM com.revature.bikeshop.model.User WHERE 'username' = :input";
+		String hql = "SELECT COUNT(*) FROM com.revature.bikeshop.model.User u WHERE u.username = :input";
 		
 		//query
 		TypedQuery<Long> query = session.createQuery(hql, Long.class);
@@ -176,7 +174,7 @@ public class UserDAOImp implements UserDAO{
         Session session = HibernateUtil.getHibernateSession();
 
         //struct our hql
-        String hql = "SELECT COUNT(*) FROM com.revature.bikeshop.model.User WHERE 'email' = :input";
+        String hql = "SELECT COUNT(*) FROM com.revature.bikeshop.model.User u WHERE u.email = :input";
 
         //query
         TypedQuery<Long> query = session.createQuery(hql, Long.class);
