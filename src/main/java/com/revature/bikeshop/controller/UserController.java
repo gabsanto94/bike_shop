@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 //might not need the cross origin
+//test
 @Controller
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
