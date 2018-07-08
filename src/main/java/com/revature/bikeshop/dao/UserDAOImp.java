@@ -64,10 +64,11 @@ public class UserDAOImp implements UserDAO{
 	@Override
     public User getUserById(int userId){
 
+		User result;
 
         Session session = HibernateUtil.getHibernateSession();
 
-		User result = session.get(User.class, userId);
+		result = session.get(User.class, userId);
 
         session.close();
 
@@ -126,6 +127,8 @@ public class UserDAOImp implements UserDAO{
 
 	@Override
 	public boolean deleteUser(int id) {
+
+	        int affectedRows = 0;
 			//create session
             Session session = HibernateUtil.getHibernateSession();
 
@@ -137,7 +140,7 @@ public class UserDAOImp implements UserDAO{
             query.setParameter("input", id);
 
             session.beginTransaction();
-                int affectedRows = query.executeUpdate();
+                affectedRows = query.executeUpdate();
             session.getTransaction().commit();
 
             session.close();
