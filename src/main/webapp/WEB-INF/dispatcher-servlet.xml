@@ -4,6 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:security="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
@@ -11,7 +12,7 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/aop
-        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
     <!-- for component annotations -->
     <context:component-scan base-package="com.revature.bikeshop" />
@@ -24,6 +25,20 @@
 
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
+    <security:http auto-config="true" use-expressions="true">
+        <security:intercept-url pattern="/admin/**" access="hasRole('admin')" />
+        <security:intercept-url pattern="/customer/**" access="hasRole('customer')" />
+        <security:form-login
+                login-page="/login"
+                default-target-url="/home"
+                authentication-failure-url="/login?error"
+                username-parameter="user"
+                password-parameter="pass" />
+        <security:logout logout-url="/logout" logout-success-url="/login?logout" />
+    </security:http>
 
+    <security:authentication-manager>
+        <security:authentication-provider ref="customAuthenticationProvider" />
+    </security:authentication-manager>
 
 </beans>
