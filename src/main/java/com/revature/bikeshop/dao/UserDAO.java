@@ -7,6 +7,7 @@ public interface UserDAO {
 	
 	public List<User> getAllUsers();
 	public User getUser(String username, String password);
+	public User getUser(String username);
 	public User getUserById(int userId);
 	public boolean addUser(User user);
 	public boolean updateUser(User user);

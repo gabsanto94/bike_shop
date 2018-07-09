@@ -16,7 +16,7 @@ public class UserDAOImp implements UserDAO{
 
 	@Override
 	public List<User> getAllUsers() {
-
+        System.out.println("im in the  implementation");
         List<User> users;
 
 		//get the session from manager class
@@ -33,7 +33,6 @@ public class UserDAOImp implements UserDAO{
         System.out.println(users.toString());
 		session.close();
 
-		System.out.println(users.toString());
 		return users;
 	}
 
@@ -51,6 +50,29 @@ public class UserDAOImp implements UserDAO{
 		TypedQuery<User> query = session.createQuery(hql, User.class);
 		query.setParameter("input", username);
 		query.setParameter("second", password);
+
+		//get the result
+		user = query.getSingleResult();
+
+		//close session
+		session.close();
+
+		return user;
+	}
+
+	@Override
+	public User getUser(String username) {
+		User user;
+
+		//get session
+		Session session = HibernateUtil.getHibernateSession();
+
+		//construct our query
+		String hql = "FROM com.revature.bikeshop.model.User u WHERE u.username = :input";
+
+		//query
+		TypedQuery<User> query = session.createQuery(hql, User.class);
+		query.setParameter("input", username);
 
 		//get the result
 		user = query.getSingleResult();

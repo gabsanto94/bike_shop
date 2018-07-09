@@ -10,6 +10,8 @@ public interface UserService {
 
     User getUsersById (int userId);
 
+    User getUserByUsername(String username);
+
     boolean updateUser(User user);
 
     void removeUser(int id);

@@ -1,9 +1,6 @@
 package com.revature.bikeshop.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.io.Serializable;
 
 
 @Entity
@@ -63,13 +60,6 @@ public class User {
 		this.userId = userId;
 	}
 	
-	public String getUserRole() {
-		return userRole;
-	}
-	public void setUserRole(String userRole) {
-		this.userRole = userRole;
-	}
-	
 	public String getFname() {
 		return fname;
 	}
@@ -115,11 +105,18 @@ public class User {
         this.shippingAddress = shippingAddress;
     }
 
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId +
-                ", userRole='" + userRole + '\'' +
                 ", fname='" + fname + '\'' +
                 ", lname='" + lname + '\'' +
                 ", email='" + email + '\'' +
@@ -127,7 +124,8 @@ public class User {
                 ", password='" + password + '\'' +
                 ", billingAddress=" + billingAddress +
                 ", shippingAddress=" + shippingAddress +
-
+                ", role:= " + userRole +
                 '}';
     }
+
 }

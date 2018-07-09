@@ -24,6 +24,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public User getUserByUsername(String username){
+        return userDao.getUser(username);
+    }
+
+    @Override
     public boolean updateUser(User user) {
         return userDao.updateUser(user);
     }
@@ -35,6 +40,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> getAllUsers() {
+
+        System.out.println("im in the services implementation");
         return userDao.getAllUsers();
     }
 
