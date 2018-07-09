@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//might not need the cross origin
+//test
 @Controller
 @RequestMapping(value = "/admin")
 public class UserController {
