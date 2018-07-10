@@ -1,11 +1,13 @@
 package com.revature.bikeshop.utils;
 
+import org.hibernate.Session;
+
 import com.revature.bikeshop.dao.UserDAO;
 import com.revature.bikeshop.dao.UserDAOImp;
 import com.revature.bikeshop.model.BillingAddress;
+import com.revature.bikeshop.model.Product;
 import com.revature.bikeshop.model.ShippingAddress;
 import com.revature.bikeshop.model.User;
-import org.hibernate.Session;
 
 public class FireHibernate {
 
@@ -26,8 +28,12 @@ public class FireHibernate {
         //myCart.setUser(u);
         ba.setUser(u);
         sa.setUser(u);
-
-        userDao.addUser(u);
+        
+        //add the product here
+        Product p = new Product(0, "bike1", "manufactorer1", "category1", "description", 120.00, "status1", 43);
+        Product p2 = new Product(0, "bike2", "manufactorer2", "category2", "description2", 121.00, "status2", 40);
+        
+       
         //tx.commit();
         System.out.println(u);
 

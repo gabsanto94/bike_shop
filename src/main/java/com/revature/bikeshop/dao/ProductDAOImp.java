@@ -44,7 +44,7 @@ public class ProductDAOImp implements ProductDAO {
         Session session = HibernateUtil.getHibernateSession();
 
         //object class
-        String hql = "from com.revature.bikeshop.model.Product where 'in_cart' = 'false'";
+        String hql = "from com.revature.bikeshop.model.Product p where p.in_cart = 'false'";
 
         //query in our session
         TypedQuery<Product> query = session.createQuery(hql, Product.class);
@@ -60,7 +60,7 @@ public class ProductDAOImp implements ProductDAO {
 
 
     @Override
-    public Product getProductById(String productId) {
+    public Product getProductById(int productId) {
 
         Product products = null;
 
@@ -68,7 +68,7 @@ public class ProductDAOImp implements ProductDAO {
         Session session = HibernateUtil.getHibernateSession();
 
         //construct our query
-        String hql = "FROM com.revature.bikeshop.model.Product WHERE 'productId' = :input";
+        String hql = "FROM com.revature.bikeshop.model.Product p WHERE p.productId = :input";
 
         //query
         TypedQuery<Product> query = session.createQuery(hql, Product.class);
@@ -123,13 +123,13 @@ public class ProductDAOImp implements ProductDAO {
     }
 
     @Override
-    public boolean deleteProductById(String productId) {
+    public boolean deleteProductById(int productId) {
 
         //create a session
         Session session = HibernateUtil.getHibernateSession();
 
         //structure our query
-        String hql = "DELETE FROM com.revature.bikeshop.model.Product WHERE 'productId' = :input";
+        String hql = "DELETE FROM com.revature.bikeshop.model.Product p WHERE p.productId = :input";
 
         //query
         TypedQuery<Product> query = session.createQuery(hql, Product.class);
