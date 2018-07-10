@@ -38,7 +38,6 @@ public class FireHibernate {
 
         userDao.addUser(u);
 
-
         BillingAddress ba1 = new BillingAddress(0, "289 Mc Dowell", "Phoenix", "Arizona", "85605", null);
         ShippingAddress sa1 = new ShippingAddress(0, "sada East Dowell", "Phoenix", "Arizona", "85605", null);
         //Cart myCart = new Cart(0, null, 0, null);
@@ -56,7 +55,7 @@ public class FireHibernate {
         session.close();
         HibernateUtil.getHibernateSession().close();
 
-        System.out.println("finish");
+        System.out.println("finish this");
     }
 
 }
