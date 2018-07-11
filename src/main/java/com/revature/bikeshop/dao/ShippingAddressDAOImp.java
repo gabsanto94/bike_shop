@@ -5,12 +5,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import com.revature.bikeshop.model.ShippingAddress;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
-import javax.transaction.Transactional;
-
-@Repository
-@Transactional
+@Component
 public class ShippingAddressDAOImp implements ShippingAddressDAO {
 
     @Override
@@ -23,9 +20,8 @@ public class ShippingAddressDAOImp implements ShippingAddressDAO {
             t.commit();
         } catch (HibernateException e) {
             e.printStackTrace();
-        } finally {
-            session.close();
         }
+
         return shippingAddressId;
     }
 

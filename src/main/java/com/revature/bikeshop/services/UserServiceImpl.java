@@ -15,7 +15,6 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void addUser(User user) {
-        System.out.println("im inside the service" + user);
         userDao.addUser(user);
     }
 
@@ -25,7 +24,24 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public User getUserByUsername(String username){
+        return userDao.getUser(username);
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        return userDao.updateUser(user);
+    }
+
+    @Override
+    public void removeUser(int id) {
+        userDao.deleteUser(id);
+    }
+
+    @Override
     public List<User> getAllUsers() {
+
+        System.out.println("im in the services implementation");
         return userDao.getAllUsers();
     }
 
@@ -33,5 +49,6 @@ public class UserServiceImpl implements UserService{
     public User checkLogin(String username, String password) {
         return userDao.getUser(username, password);
     }
+
 
 }
