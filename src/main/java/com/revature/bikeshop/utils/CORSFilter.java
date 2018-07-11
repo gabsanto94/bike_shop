@@ -12,7 +12,7 @@ public class CORSFilter extends GenericFilterBean implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
         HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
-        httpResponse.setHeader("Access-Control-Allow-Origin", "*");
+        httpResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
         //httpResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
         //* to allow all members
         httpResponse.setHeader("Access-Control-Allow-Methods", "*");

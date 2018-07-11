@@ -27,10 +27,9 @@
 
     <security:http auto-config="true" use-expressions="true">
         <security:intercept-url pattern="/admin/**" access="hasRole('admin')" />
-        <security:intercept-url pattern="/customer/**" access="hasRole('customer')" />
         <security:form-login
                 login-page="/login"
-                default-target-url="/home"
+                default-target-url="/"
                 authentication-failure-url="/login?error"
                 username-parameter="user"
                 password-parameter="pass" />
