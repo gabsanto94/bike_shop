@@ -8,7 +8,6 @@ import com.revature.bikeshop.model.BillingAddress;
 import com.revature.bikeshop.model.Product;
 import com.revature.bikeshop.model.ShippingAddress;
 import com.revature.bikeshop.model.User;
-import org.hibernate.Session;
 
 import org.springframework.security.core.GrantedAuthority;
 
