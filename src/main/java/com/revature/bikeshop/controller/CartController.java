@@ -1,14 +1,10 @@
 package com.revature.bikeshop.controller;
 
-
-
-
 import com.revature.bikeshop.dao.CartItemDAO;
 import com.revature.bikeshop.model.Cart;
 import com.revature.bikeshop.model.CartItem;
 import com.revature.bikeshop.services.CartItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 

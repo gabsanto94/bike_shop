@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.revature.bikeshop.dao.ProductDAO;
 import com.revature.bikeshop.model.Product;
+
 @Service
 public class ProductServiceImpl implements ProductService {
 

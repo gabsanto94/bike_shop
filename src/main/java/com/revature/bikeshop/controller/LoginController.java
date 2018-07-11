@@ -5,14 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.bikeshop.model.User;
 import com.revature.bikeshop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 @Controller
 public class LoginController {
@@ -36,7 +33,6 @@ public class LoginController {
     @RequestMapping(value = "/logout", method = RequestMethod.DELETE)
     @ResponseBody
     public String logout(HttpSession s){
-        //s.invalidate();
         return "successfully logged out";
     }
 
