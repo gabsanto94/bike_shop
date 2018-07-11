@@ -6,18 +6,16 @@ import com.revature.bikeshop.utils.HibernateUtil;
 import org.hibernate.Session;
 import com.revature.bikeshop.model.Cart;
 import com.revature.bikeshop.model.CartItem;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
-@Repository
-@Service
+@Component
 @Transactional
 public class CartDAOImp implements CartDAO {
-
-
 
     @Override
     public List<Cart> getAllCarts() {
