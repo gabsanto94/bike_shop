@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
-@Component
 @Transactional
+@Component
 public class CartDAOImp implements CartDAO {
 
     @Override
