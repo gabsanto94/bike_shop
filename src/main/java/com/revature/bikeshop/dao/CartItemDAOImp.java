@@ -8,7 +8,9 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import com.revature.bikeshop.utils.HibernateUtil;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,15 @@ public class CartItemDAOImp implements CartItemDAO {
         //create session
         Session session = HibernateUtil.getHibernateSession();
 
-        session.save(cartItem);
+        Transaction t = session.beginTransaction();
+
+        try {
+            //userId = (Integer) session.save(user);
+            session.save(cartItem);
+            t.commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        }
 
         //check if our insert worked
         boolean success = session.contains(cartItem);

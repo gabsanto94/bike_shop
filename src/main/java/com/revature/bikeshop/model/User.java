@@ -35,6 +35,10 @@ public class User {
     @JoinColumn(name = "shippingAddressId")
 	private ShippingAddress shippingAddress;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="cartId")
+    private Cart cart;
+
     @Column
     private String userRole;
 	
@@ -42,7 +46,7 @@ public class User {
 		super();
 	}
 
-    public User(String fname, String lname, String email, String username, String password, BillingAddress billingAddress, ShippingAddress shippingAddress, String userRole) {
+    public User(String fname, String lname, String email, String username, String password, BillingAddress billingAddress, ShippingAddress shippingAddress, String userRole, Cart cart) {
         this.fname = fname;
         this.lname = lname;
         this.email = email;
@@ -51,6 +55,7 @@ public class User {
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
         this.userRole = userRole;
+        this.cart = cart;
     }
 
     public int getUserId() {
@@ -113,6 +118,14 @@ public class User {
         this.userRole = userRole;
     }
 
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -127,5 +140,4 @@ public class User {
                 ", role:= " + userRole +
                 '}';
     }
-
 }

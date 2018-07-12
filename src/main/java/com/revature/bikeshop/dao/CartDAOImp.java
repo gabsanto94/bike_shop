@@ -3,9 +3,11 @@ package com.revature.bikeshop.dao;
 import java.util.List;
 
 import com.revature.bikeshop.utils.HibernateUtil;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import com.revature.bikeshop.model.Cart;
 import com.revature.bikeshop.model.CartItem;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -59,7 +61,15 @@ public class CartDAOImp implements CartDAO {
         //create session
         Session session = HibernateUtil.getHibernateSession();
 
-        session.save(cart);
+        Transaction t = session.beginTransaction();
+
+        try {
+            //userId = (Integer) session.save(user);
+            session.save(cart);
+            t.commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        }
 
         //check if our insert worked
         boolean success = session.contains(cart);
@@ -68,6 +78,7 @@ public class CartDAOImp implements CartDAO {
         session.close();
 
         return success;
+
     }
 
     @Override

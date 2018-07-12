@@ -23,19 +23,20 @@ public class CartController {
 
     //delete - call DAO to remove items from the database
     @RequestMapping(method = RequestMethod.DELETE)
-    public  @ResponseBody void deleteCart(Cart cart){
+    public @ResponseBody void deleteCart(Cart cart){
         cartItemService.removeAllCartItems(cart);
     }
 
     //@PathVariable int id
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-   private @ResponseBody void removeItems(@PathVariable int id){
+   public @ResponseBody void removeItems(@PathVariable int id){
         cartItemService.removeCartItem(id);
     }
 
 
     @RequestMapping(method = RequestMethod.GET)
-    private List<CartItem> getCartItems(){
+    @ResponseBody
+    public List<CartItem> getCartItems(){
 
         return cartItemService.getAllItems();
     }
