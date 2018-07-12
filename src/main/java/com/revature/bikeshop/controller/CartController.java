@@ -1,6 +1,5 @@
 package com.revature.bikeshop.controller;
 
-import com.revature.bikeshop.dao.CartItemDAO;
 import com.revature.bikeshop.model.Cart;
 import com.revature.bikeshop.model.CartItem;
 import com.revature.bikeshop.services.CartItemService;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequestMapping(value = "/cart")
 public class CartController {
 
     @Autowired

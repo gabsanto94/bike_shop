@@ -21,12 +21,12 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public String doLogin(@RequestHeader("Authorization") String token, HttpServletResponse response) throws JsonProcessingException
+    public String doLogin(@RequestHeader("Authorization") String token, Authentication authentication, HttpServletResponse response) throws JsonProcessingException
     {
 
         System.out.println("my token" + token);
 
-        return om.writeValueAsString(token);
+        return om.writeValueAsString(authentication);
 
     }
 
