@@ -5,14 +5,13 @@ import java.util.List;
 import com.revature.bikeshop.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-
 import javax.persistence.TypedQuery;
 
 import com.revature.bikeshop.model.Product;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProductDAOImp implements ProductDAO {
+public class ProductsDAOImpl implements ProductsDAO {
 
     @Override
     public List<Product> getAllProducts() {
@@ -23,29 +22,6 @@ public class ProductDAOImp implements ProductDAO {
 
         //object class
         String hql = "from com.revature.bikeshop.model.Product";
-
-        //query in our session
-        TypedQuery<Product> query = session.createQuery(hql, Product.class);
-
-        //get list
-        products = query.getResultList();
-
-        session.close();
-
-        // return the list of objects populated by the DB.
-        return products;
-    }
-
-    @Override
-    public List<Product> getAllProductsNotInCart() {
-
-        List<Product> products;
-
-        //get the session from manager class
-        Session session = HibernateUtil.getHibernateSession();
-
-        //object class
-        String hql = "from com.revature.bikeshop.model.Product p where p.in_cart = 'false'";
 
         //query in our session
         TypedQuery<Product> query = session.createQuery(hql, Product.class);
@@ -143,7 +119,7 @@ public class ProductDAOImp implements ProductDAO {
 
         session.close();
 
-       
+
 
     }
 

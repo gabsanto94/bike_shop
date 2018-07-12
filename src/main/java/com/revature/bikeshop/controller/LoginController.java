@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.bikeshop.model.User;
 import com.revature.bikeshop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +23,15 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public String doLogin(@RequestHeader("Authorization") String token, HttpServletResponse response) throws JsonProcessingException
+    public String doLogin(@RequestHeader("Authorization") String token, Authentication authentication, HttpServletResponse response) throws JsonProcessingException
     {
 
-        System.out.println("my token" + token);
+        System.out.println("my token " + token);
+        System.out.println("my authorities " + authentication.getAuthorities());
+        System.out.println("my credentials " + authentication.getCredentials());
+        System.out.println("my principal " + authentication.getPrincipal());
 
-        return om.writeValueAsString(token);
+        return om.writeValueAsString(authentication);
 
     }
 

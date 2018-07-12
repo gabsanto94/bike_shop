@@ -7,14 +7,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-
 @Controller
+@RequestMapping(value = "/register")
 public class RegisterController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value="/register", method=RequestMethod.GET)
+    @RequestMapping(/*value="/register", */method=RequestMethod.GET)
     public @ResponseBody String registerUser(UsernamePasswordAuthenticationToken myToken) {
 
         System.out.println("MyToken GetPrincipal: " + myToken.getPrincipal());
@@ -26,7 +26,7 @@ public class RegisterController {
         return "hello from the register controller";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(/*value = "/register", */method = RequestMethod.POST)
     public @ResponseBody User registerUser(@RequestBody User u) {
 
         System.out.println("USER: " + u);

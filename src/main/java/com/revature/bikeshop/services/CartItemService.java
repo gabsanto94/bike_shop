@@ -3,8 +3,6 @@ package com.revature.bikeshop.services;
 import com.revature.bikeshop.model.Cart;
 import com.revature.bikeshop.model.CartItem;
 
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 public interface CartItemService {

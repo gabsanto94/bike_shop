@@ -15,13 +15,6 @@ public class UserController {
     @Autowired
     private UserService us;
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
-    private String getGreet() {
-
-        return "Hello I am authorized.";
-    }
-
     //MVC is trying to look for a view but if you put ResponseBody it will return the body.
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     @ResponseBody

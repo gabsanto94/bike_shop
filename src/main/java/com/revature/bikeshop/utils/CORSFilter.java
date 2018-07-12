@@ -13,9 +13,8 @@ public class CORSFilter extends GenericFilterBean implements Filter {
 
         HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
         httpResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-        //httpResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
         //* to allow all members
-        httpResponse.setHeader("Access-Control-Allow-Methods", "*");
+        httpResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
 
         //Second Parameter: it can be Origin, Content-Type, X-Auth-Token, Authorization
         httpResponse.setHeader("Access-Control-Allow-Headers", "*");
