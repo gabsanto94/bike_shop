@@ -1,8 +1,13 @@
 package com.revature.bikeshop.utils;
 
+import com.revature.bikeshop.dao.CartDAOImp;
 import com.revature.bikeshop.dao.UserDAO;
 import com.revature.bikeshop.dao.UserDAOImp;
 import com.revature.bikeshop.model.BillingAddress;
+import com.revature.bikeshop.model.Cart;
+import com.revature.bikeshop.dao.CartDAO;
+import com.revature.bikeshop.model.CartItem;
+import com.revature.bikeshop.model.Product;
 import com.revature.bikeshop.model.ShippingAddress;
 import com.revature.bikeshop.model.User;
 import org.hibernate.Session;
@@ -51,6 +56,26 @@ public class FireHibernate {
 
         //tx.commit();
         System.out.println(u);
+        
+       //cart
+       // Cart c = new Cart(0, null, 1, null);
+        
+        //cart item
+   
+       Product bikes = null;
+      //  Cart cart = null;
+		//CartItem ci = new CartItem(1,bikes,12,0,cart);
+        //product
+      //  Product p = new Product(0, "bike1", "manufactorer1", "category1", "description", 120.00, "status1", 43);
+      //  Product p2 = new Product(0, "bike2", "manufactorer2", "category2", "description2", 121.00, "status2", 40);
+        //ci.setCart(c);
+        //dao for cart -> add cart
+       // CartDAO.addCart(c);
+        
+        
+        
+        
+        
 
         session.close();
         HibernateUtil.getHibernateSession().close();

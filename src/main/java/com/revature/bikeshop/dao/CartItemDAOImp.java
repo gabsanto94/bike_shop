@@ -3,6 +3,8 @@ package com.revature.bikeshop.dao;
 import com.revature.bikeshop.model.Cart;
 import com.revature.bikeshop.model.CartItem;
 
+import java.util.List;
+
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
@@ -83,27 +85,48 @@ public class CartItemDAOImp implements CartItemDAO {
         }
     }
 
-    @Override
-    public CartItem getCartItemById(String cartItemId) {
-        CartItem cartItem;
+	@Override
+	public CartItem getCartItemById(int cartItemId) {
+		  CartItem cartItem;
 
-        //get session
+	        //get session
+	        Session session = HibernateUtil.getHibernateSession();
+
+	        //construct our query
+	        String hql = "FROM com.revature.bikeshop.model.CartItem WHERE 'cartItemId' = :input";
+
+	        //query
+	        TypedQuery<CartItem> query = session.createQuery(hql, CartItem.class);
+	        query.setParameter("input", cartItemId);
+
+	        //get the result
+	        cartItem = query.getSingleResult();
+
+	        //close session
+	        session.close();
+
+	        return cartItem;
+	    }
+
+	@Override
+	public List<CartItem> getAllItems() {
+		List<CartItem> cartItem;
+        //get the session from manager class
         Session session = HibernateUtil.getHibernateSession();
 
-        //construct our query
-        String hql = "FROM com.revature.bikeshop.model.CartItem WHERE 'cartItemId' = :input";
+        //object class
+        String hql = "from com.revature.bikeshop.model.Cart";
 
-        //query
+        //query in our session
         TypedQuery<CartItem> query = session.createQuery(hql, CartItem.class);
-        query.setParameter("input", cartItemId);
 
-        //get the result
-        cartItem = query.getSingleResult();
+        //get list
+        cartItem = query.getResultList();
 
-        //close session
         session.close();
 
-        return cartItem;
+        // return the list of objects populated by the DB.
+        return (cartItem);
     }
-
 }
+
