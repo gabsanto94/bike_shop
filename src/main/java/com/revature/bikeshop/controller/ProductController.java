@@ -1,6 +1,7 @@
 package com.revature.bikeshop.controller;
 
 import com.revature.bikeshop.model.Product;
+import com.revature.bikeshop.model.User;
 import com.revature.bikeshop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,17 @@ public class ProductController {
 	@Autowired
 	private ProductService ps;
 	
+	@RequestMapping(value = "/products", method = RequestMethod.POST)
+    public @ResponseBody Product registerUser(@RequestBody Product product) {
+
+        System.out.println("Product: " + product);
+
+
+        ps.addProduct(product);
+
+        return product;
+    }
+	
 	//all the products
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	@ResponseBody
@@ -26,11 +38,12 @@ public class ProductController {
 	@RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	private Product getProduct(@PathVariable int id) {
+		System.out.println("getting product by id.");
 		return ps.getProductById(id);
 	}
 	
 	//update a product from a put request
-	@RequestMapping(value = "/products", method = RequestMethod.PUT)
+	@RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
 	@ResponseBody
 	private String updateProduct(@RequestBody Product product, @PathVariable int id) {
 		
@@ -53,7 +66,9 @@ public class ProductController {
 	
 	//product delete request
 	@RequestMapping(value="/products/{id}", method = RequestMethod.DELETE)
-	private void deleteUser(@PathVariable int id) {
+	private void deleteProductById(@PathVariable int id) {
+		System.out.println("in delete");
+		System.out.println(id);
 		ps.removeProduct(id);
 	}
 	
