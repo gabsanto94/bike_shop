@@ -17,14 +17,14 @@ public class CartController {
     @Autowired
     private CartItemService cartItemService;
 
-    @Autowired
-    private CartItemDAO cartItemDAO;
+   // @Autowired
+   // private CartItemDAO cartItemDAO;
 
 
     //delete - call DAO to remove items from the database
     @RequestMapping(method = RequestMethod.DELETE)
     public  @ResponseBody void deleteCart(Cart cart){
-        cartItemDAO.removeAllCartItems(cart);
+        cartItemService.removeAllCartItems(cart);
     }
 
     //@PathVariable int id
@@ -39,6 +39,7 @@ public class CartController {
 
         return cartItemService.getAllItems();
     }
+
 
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody String addItems(@RequestBody CartItem ci){

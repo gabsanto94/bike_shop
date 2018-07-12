@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CartItemServiceImp {
+
+public class CartItemServiceImp implements CartItemService {
 
     @Autowired
     private CartItemDAO cartItemDAO;
@@ -25,8 +26,18 @@ public class CartItemServiceImp {
     //}
 
 
+    @Override
+    public List<CartItem> getAllItems() {
+        return null;
+    }
+
     public void addCartItem(CartItem cartItem) {
         cartItemDAO.addCartItem(cartItem);
+    }
+
+    @Override
+    public void removeCartItem(int cartItem) {
+
     }
 
     public void removeCartItem(CartItem cartItem){
@@ -38,6 +49,10 @@ public class CartItemServiceImp {
         cartItemDAO.removeAllCartItems(cart);
     }
 
+    @Override
+    public CartItem getCartItemByProductId(int productId) {
+        return null;
+    }
 
 
     public CartItem getCartItemById(int cartItemID) {
