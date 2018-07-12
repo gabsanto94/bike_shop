@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.revature.bikeshop.utils.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import javax.persistence.TypedQuery;
 
@@ -123,7 +124,7 @@ public class ProductDAOImp implements ProductDAO {
     }
 
     @Override
-    public boolean deleteProductById(int productId) {
+    public void deleteProductById(int productId) {
 
         //create a session
         Session session = HibernateUtil.getHibernateSession();
@@ -132,7 +133,7 @@ public class ProductDAOImp implements ProductDAO {
         String hql = "DELETE FROM com.revature.bikeshop.model.Product p WHERE p.productId = :input";
 
         //query
-        TypedQuery<Product> query = session.createQuery(hql, Product.class);
+        Query query = session.createQuery(hql);
         query.setParameter("input", productId);
 
         //begin transaction
@@ -142,7 +143,7 @@ public class ProductDAOImp implements ProductDAO {
 
         session.close();
 
-        return (affectedRows > 0);
+       
 
     }
 
