@@ -19,9 +19,8 @@
 
         <!-- linking our POJOS -->
         <mapping class="com.revature.bikeshop.model.User" />
-        <mapping class="com.revature.bikeshop.model.Product" />
-        <mapping class="com.revature.bikeshop.model.Cart" />
-        <mapping class="com.revature.bikeshop.model.CartItem" />
+        <!--<mapping class="com.revature.bikeshop.model.Cart" />-->
+        <!--<mapping class="com.revature.bikeshop.model.CartItem" />-->
         <mapping class="com.revature.bikeshop.model.ShippingAddress" />
         <mapping class="com.revature.bikeshop.model.BillingAddress" />
         <mapping class="com.revature.bikeshop.model.Product" />
