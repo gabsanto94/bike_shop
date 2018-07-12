@@ -5,9 +5,7 @@ import com.revature.bikeshop.model.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.ws.ServiceMode;
 import java.util.List;
-
 @Service
 public class CartServiceImp implements CartService {
 

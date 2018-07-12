@@ -25,10 +25,8 @@
 
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
-    <security:http auto-config="true" use-expressions="true">
-
+    <!-- <security:http auto-config="true" use-expressions="true">
         <security:intercept-url pattern="/admin/**" access="hasRole('admin')" />
-
         <security:form-login
                 login-page="/login"
                 default-target-url="/"
@@ -40,6 +38,6 @@
 
     <security:authentication-manager>
         <security:authentication-provider ref="customAuthenticationProvider" />
-    </security:authentication-manager>
+    </security:authentication-manager>-->
 
 </beans>
