@@ -37,7 +37,7 @@ public class CartController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<CartItem> getCartItems(){
-
+        System.out.println("I am getting all the cart items");
         return cartItemService.getAllItems();
     }
 
