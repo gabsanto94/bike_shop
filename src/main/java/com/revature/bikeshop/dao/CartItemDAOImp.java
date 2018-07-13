@@ -3,6 +3,8 @@ package com.revature.bikeshop.dao;
 import com.revature.bikeshop.model.Cart;
 import com.revature.bikeshop.model.CartItem;
 
+import java.util.List;
+
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
@@ -94,7 +96,7 @@ public class CartItemDAOImp implements CartItemDAO {
     }
 
     @Override
-    public CartItem getCartItemById(int cartItemId) {
+    public CartItem getCartItemById(String cartItemId) {
         CartItem cartItem;
 
         //get session
@@ -116,4 +118,24 @@ public class CartItemDAOImp implements CartItemDAO {
         return cartItem;
     }
 
+	@Override
+	public List<CartItem> getAllItems() {
+		List<CartItem> cartItem;
+        //get the session from manager class
+        Session session = HibernateUtil.getHibernateSession();
+
+        //object class
+        String hql = "from com.revature.bikeshop.model.Cart";
+
+        //query in our session
+        TypedQuery<CartItem> query = session.createQuery(hql, CartItem.class);
+
+        //get list
+        cartItem = query.getResultList();
+
+        session.close();
+
+        // return the list of objects populated by the DB.
+        return (cartItem);
+    }
 }
