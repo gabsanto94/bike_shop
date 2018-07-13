@@ -97,6 +97,42 @@ public class CartDAOImp implements CartDAO {
     }
 
     @Override
+    public boolean emptyCart(int cartId) {
+/*
+        //create session
+        Session session = HibernateUtil.getHibernateSession();
+
+        cart.cartId.clear();
+
+        //structure our query
+        String hql_items = "DELETE FROM com.revature.bikeshop.model.Cart WHERE cartId = :input";
+
+        Query query_items = session.createQuery(hql_items);
+        query_items.setParameter("input", cart.cartId());
+
+        //begin transaction
+        session.beginTransaction();
+        query_items.executeUpdate();
+        session.getTransaction().commit();
+
+        //close session
+        session.close();
+
+        if (cart.getCartItems().isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
+        return false;*/
+
+return false;
+    }
+
+    @Override
     public double getCartGrandTotal(String cartId) {
         double grandTotal = 0;
 

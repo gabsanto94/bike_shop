@@ -46,16 +46,16 @@ public class CartItemDAOImp implements CartItemDAO {
     }
 
     @Override
-    public boolean removeCartItem(CartItem cartItem) {
+    public boolean removeCartItem(int cartItemId) {
         //create a session
         Session session = HibernateUtil.getHibernateSession();
 
         //structure our query
-        String hql = "DELETE FROM com.revature.bikeshop.model.CartItem WHERE 'cartitemid' = :input";
+        String hql = "DELETE FROM com.revature.bikeshop.model.CartItem ci WHERE ci.cartItemId = :input";
 
         //query
         Query query = session.createQuery(hql);
-        query.setParameter("input", cartItem.getCartItemId());
+        query.setParameter("input", cartItemId);
 
         //begin transaction
         session.beginTransaction();
@@ -75,7 +75,7 @@ public class CartItemDAOImp implements CartItemDAO {
         cart.getCartItems().clear();
 
         //structure our query
-        String hql_items = "DELETE FROM com.revature.bikeshop.model.CartItem WHERE 'cart_id' = :input";
+        String hql_items = "DELETE FROM com.revature.bikeshop.model.Cart c WHERE c.cartId = :input";
 
         Query query_items = session.createQuery(hql_items);
         query_items.setParameter("input", cart.getCartId());
@@ -95,29 +95,6 @@ public class CartItemDAOImp implements CartItemDAO {
         }
     }
 
-    @Override
-    public CartItem getCartItemById(String cartItemId) {
-        CartItem cartItem;
-
-        //get session
-        Session session = HibernateUtil.getHibernateSession();
-
-        //construct our query
-        String hql = "FROM com.revature.bikeshop.model.CartItem WHERE 'cartItemId' = :input";
-
-        //query
-        TypedQuery<CartItem> query = session.createQuery(hql, CartItem.class);
-        query.setParameter("input", cartItemId);
-
-        //get the result
-        cartItem = query.getSingleResult();
-
-        //close session
-        session.close();
-
-        return cartItem;
-    }
-
 	@Override
 	public List<CartItem> getAllItems() {
 		List<CartItem> cartItem;
@@ -125,7 +102,7 @@ public class CartItemDAOImp implements CartItemDAO {
         Session session = HibernateUtil.getHibernateSession();
 
         //object class
-        String hql = "from com.revature.bikeshop.model.Cart";
+        String hql = "from com.revature.bikeshop.model.CartItem";
 
         //query in our session
         TypedQuery<CartItem> query = session.createQuery(hql, CartItem.class);
@@ -137,5 +114,29 @@ public class CartItemDAOImp implements CartItemDAO {
 
         // return the list of objects populated by the DB.
         return (cartItem);
+    }
+
+    @Override
+    public List<CartItem> getItemsByUserId(int userId) {
+
+        List<CartItem> cartItem;
+
+        //get the session from manager class
+        Session session = HibernateUtil.getHibernateSession();
+
+        //construct our query
+        String hql = "FROM com.revature.bikeshop.model.CartItem ci WHERE ci.cart.user.userId = :input";
+
+        //query
+        TypedQuery<CartItem> query = session.createQuery(hql, CartItem.class);
+        query.setParameter("input", userId);
+
+        //get list
+        cartItem = query.getResultList();
+
+        session.close();
+
+        // return the list of objects populated by the DB.
+        return cartItem;
     }
 }

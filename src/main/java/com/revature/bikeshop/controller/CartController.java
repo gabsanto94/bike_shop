@@ -20,12 +20,18 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
+    @RequestMapping(value="/empty/{id}", method = RequestMethod.DELETE)
+    public @ResponseBody void deleteCart(@PathVariable("id") int cartId){
 
-    //delete - call DAO to remove items from the database
-    @RequestMapping(method = RequestMethod.DELETE)
-    public @ResponseBody void deleteCart(Cart cart){
-        cartItemService.removeAllCartItems(cart);
+        cartService.emptyCart(cartId);
     }
+
+
+
+
+
+
+
 
     //@PathVariable int id
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
@@ -34,19 +40,35 @@ public class CartController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET)
+
+
+
+
+
+
+
+
+
+
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public List<CartItem> getCartItems(){
-        System.out.println("I am getting all the cart items");
-        return cartItemService.getAllItems();
+    public List<CartItem> getCartItems(@PathVariable int id){
+
+        return cartItemService.getCartItemsByUserId(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public @ResponseBody String addItems(@RequestBody CartItem ci){
-        System.out.println("im here");
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public String addItems( @PathVariable("id") int userId, @RequestBody CartItem ci){
+
+
+        Cart myCart = new Cart();
+        myCart.setCartId(userId);
+        ci.setCart(myCart);
+
         cartItemService.addCartItem(ci);
         return "Added Successfully.";
     }
-
 }
 

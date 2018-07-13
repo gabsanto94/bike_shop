@@ -29,4 +29,9 @@ public class CartServiceImp implements CartService {
     public void updateCart(Cart cart){
         cartDAO.updateCart(cart);
     }
+
+    @Override
+    public void emptyCart(int cartId) {
+        cartDAO.emptyCart(cartId);
+    }
 }

@@ -22,8 +22,8 @@ public class CartItemServiceImp implements CartItemService{
         cartItemDAO.addCartItem(cartItem);
     }
 
-    public void removeCartItem(CartItem cartItem){
-        cartItemDAO.removeCartItem(cartItem);
+    public void removeCartItem(int cartItemId){
+        cartItemDAO.removeCartItem(cartItemId);
     }
 
 
@@ -31,32 +31,10 @@ public class CartItemServiceImp implements CartItemService{
         cartItemDAO.removeAllCartItems(cart);
     }
 
-
-
-    public CartItem getCartItemById(int cartItemID) {
-
-        return cartItemDAO.getCartItemById(cartItemID);
+    @Override
+    public List<CartItem> getCartItemsByUserId(int userId) {
+        return cartItemDAO.getItemsByUserId(userId);
     }
-
-	@Override
-	public List<CartItem> getAllItems() {
-		return cartItemDAO.getAllItems();
-	}
-
-	@Override
-	public void removeCartItem(int cartItem) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public CartItem getCartItemByProductId(int productId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
 
 
 }

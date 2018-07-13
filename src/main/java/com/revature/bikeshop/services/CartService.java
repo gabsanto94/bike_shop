@@ -14,4 +14,6 @@ public interface CartService {
 
     void updateCart(Cart cart);
 
+    void emptyCart(int cartId);
+
 }

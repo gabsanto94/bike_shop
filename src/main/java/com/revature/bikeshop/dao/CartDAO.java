@@ -10,5 +10,6 @@ public interface CartDAO {
     Cart getCartById(int cartId);
     boolean addCart(Cart cart);
     boolean updateCart(Cart cart);
+    boolean emptyCart(int cartId);
     double getCartGrandTotal(String cartId);
 }
