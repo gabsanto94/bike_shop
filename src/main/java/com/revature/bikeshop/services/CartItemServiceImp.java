@@ -8,21 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
-public class CartItemServiceImp implements CartItemService {
+public class CartItemServiceImp implements CartItemService{
 
     @Autowired
     private CartItemDAO cartItemDAO;
 
     @Autowired
     private CartDAO cartDAO;
-
-
-    //public List<CartItem> getAllItems()
-    //{
-        //return cartItemDAO.g();
-    //}
-
 
     public void addCartItem(CartItem cartItem) {
         cartItemDAO.addCartItem(cartItem);
@@ -52,7 +46,7 @@ public class CartItemServiceImp implements CartItemService {
 	@Override
 	public void removeCartItem(int cartItem) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

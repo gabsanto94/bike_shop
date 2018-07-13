@@ -18,7 +18,7 @@ public class UserController {
     //MVC is trying to look for a view but if you put ResponseBody it will return the body.
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     @ResponseBody
-    private List<User> getUsers() {
+    public List<User> getUsers() {
 
         System.out.println("im inside the get users to get all the users");
         return us.getAllUsers();
@@ -26,14 +26,14 @@ public class UserController {
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
     @ResponseBody
-    private User getUser(@PathVariable int id){
+    public User getUser(@PathVariable int id){
         System.out.println("im inside the get users to get specific user");
         return us.getUsersById(id);
     }
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
     @ResponseBody
-    private String updateUser(@RequestBody User user, @PathVariable int id){
+    public String updateUser(@RequestBody User user, @PathVariable int id){
 
         boolean isUserUpdated = false;
 
@@ -53,7 +53,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
-    private void deleteUser(@PathVariable int id){
+    public void deleteUser(@PathVariable int id){
         us.removeUser(id);
     }
 

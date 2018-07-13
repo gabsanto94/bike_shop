@@ -10,13 +10,15 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import com.revature.bikeshop.utils.HibernateUtil;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-@Repository
 @Transactional
-@Service
+@Component
 public class CartItemDAOImp implements CartItemDAO {
 
     @Override
@@ -24,7 +26,15 @@ public class CartItemDAOImp implements CartItemDAO {
         //create session
         Session session = HibernateUtil.getHibernateSession();
 
-        session.save(cartItem);
+        Transaction t = session.beginTransaction();
+
+        try {
+            //userId = (Integer) session.save(user);
+            session.save(cartItem);
+            t.commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        }
 
         //check if our insert worked
         boolean success = session.contains(cartItem);
@@ -85,28 +95,28 @@ public class CartItemDAOImp implements CartItemDAO {
         }
     }
 
-	@Override
-	public CartItem getCartItemById(int cartItemId) {
-		  CartItem cartItem;
+    @Override
+    public CartItem getCartItemById(String cartItemId) {
+        CartItem cartItem;
 
-	        //get session
-	        Session session = HibernateUtil.getHibernateSession();
+        //get session
+        Session session = HibernateUtil.getHibernateSession();
 
-	        //construct our query
-	        String hql = "FROM com.revature.bikeshop.model.CartItem WHERE 'cartItemId' = :input";
+        //construct our query
+        String hql = "FROM com.revature.bikeshop.model.CartItem WHERE 'cartItemId' = :input";
 
-	        //query
-	        TypedQuery<CartItem> query = session.createQuery(hql, CartItem.class);
-	        query.setParameter("input", cartItemId);
+        //query
+        TypedQuery<CartItem> query = session.createQuery(hql, CartItem.class);
+        query.setParameter("input", cartItemId);
 
-	        //get the result
-	        cartItem = query.getSingleResult();
+        //get the result
+        cartItem = query.getSingleResult();
 
-	        //close session
-	        session.close();
+        //close session
+        session.close();
 
-	        return cartItem;
-	    }
+        return cartItem;
+    }
 
 	@Override
 	public List<CartItem> getAllItems() {
@@ -129,4 +139,3 @@ public class CartItemDAOImp implements CartItemDAO {
         return (cartItem);
     }
 }
-
