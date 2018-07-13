@@ -95,8 +95,10 @@ public class CartItemDAOImp implements CartItemDAO {
         }
     }
 
+
+
     @Override
-    public CartItem getCartItemById(String cartItemId) {
+    public CartItem getCartItemById(int cartItemId) {
         CartItem cartItem;
 
         //get session
