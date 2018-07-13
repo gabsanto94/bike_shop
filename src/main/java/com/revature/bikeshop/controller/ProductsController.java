@@ -54,7 +54,7 @@ public class ProductsController {
 
         //check to see if we have the same data - not letting user give us 5 and we  have a customer 3
         if(id == product.getProductId()){
-            //      ps.updateProduct(product);
+            ps.updateProduct(product);
             isProductUpdated = true;
         }
 

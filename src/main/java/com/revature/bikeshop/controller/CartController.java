@@ -26,30 +26,11 @@ public class CartController {
         cartService.emptyCart(cartId);
     }
 
-
-
-
-
-
-
-
     //@PathVariable int id
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
    public @ResponseBody void removeItems(@PathVariable int id){
         cartItemService.removeCartItem(id);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody

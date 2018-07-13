@@ -98,17 +98,17 @@ public class CartDAOImp implements CartDAO {
 
     @Override
     public boolean emptyCart(int cartId) {
-/*
+        /*Cart cart;
         //create session
         Session session = HibernateUtil.getHibernateSession();
 
-        cart.cartId.clear();
+        cartId.clear();
 
         //structure our query
         String hql_items = "DELETE FROM com.revature.bikeshop.model.Cart WHERE cartId = :input";
 
         Query query_items = session.createQuery(hql_items);
-        query_items.setParameter("input", cart.cartId());
+        query_items.setParameter("input", cartId.cartById());
 
         //begin transaction
         session.beginTransaction();
@@ -118,19 +118,14 @@ public class CartDAOImp implements CartDAO {
         //close session
         session.close();
 
-        if (cart.getCartItems().isEmpty()) {
+        if (cartId.getCartItems().isEmpty()) {
             return true;
         } else {
             return false;
-        }
+        }*/
+        return false;
     }
 
-
-
-        return false;*/
-
-return false;
-    }
 
     @Override
     public double getCartGrandTotal(String cartId) {

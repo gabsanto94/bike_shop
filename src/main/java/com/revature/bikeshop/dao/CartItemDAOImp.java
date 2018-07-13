@@ -113,7 +113,7 @@ public class CartItemDAOImp implements CartItemDAO {
         session.close();
 
         // return the list of objects populated by the DB.
-        return (cartItem);
+        return cartItem;
     }
 
     @Override
